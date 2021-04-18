@@ -1,0 +1,12 @@
+AllCops:
+  NewCops: enable
+Style/SymbolArray:
+  Enabled: false
+Metrics/BlockLength:
+  Max: 30
+  IgnoredMethods: ["describe", "context"]
+  Exclude:
+    - "spec/**/*.rb"
+    - "config/routes/*.rb"
+    - "engines/member_api/config/routes.rb"
+    - "engines/admin_api/config/routes.rb"
