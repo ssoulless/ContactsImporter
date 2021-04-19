@@ -29,7 +29,7 @@ class ContactsController < ApplicationController
 
   def import_contacts_submit
     puts '------- DEBUG --------'
-    puts params
+    puts params[:mapping_config]
     respond_to do |format|
       format.js
     end

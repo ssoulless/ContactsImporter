@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # My installed gems
+gem 'carrierwave'
+gem 'carrierwave_direct'
+gem 'fog'
 gem 'sidekiq', '~> 6.2', '>= 6.2.1'
 gem 'smarter_csv', '~> 1.2', '>= 1.2.8'
 

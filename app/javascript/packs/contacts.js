@@ -34,15 +34,23 @@ jQuery(() => {
   $("#fields-map-form").on("submit", (e) => {
     e.preventDefault();
     let mappingConfig = {};
+    const file = document.getElementById("contacts_file_field").files[0];
+    var formData = new FormData();
+    formData.append("file", file);
     for (let i = 0; i < $("#fields-map-form select").length; i++) {
       const columnName = $(`#config-mapping-header-${i}`).text();
       const mapValue = $(`#config-mapping-column-${i}`).val();
       mappingConfig[`${columnName}`] = mapValue;
     }
+
+    formData.append("mapping_config", JSON.stringify(mappingConfig));
+
     $.ajax({
       url: "/import-contacts-submit",
       type: "post",
-      data: mappingConfig,
+      data: formData,
+      processData: false,
+      contentType: false,
       success() {},
       error: (result) => {
         console.log(result);
