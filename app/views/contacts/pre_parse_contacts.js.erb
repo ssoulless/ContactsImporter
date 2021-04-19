@@ -1,1 +1,1 @@
-console.log('hello world');
+$('#load-mapping-columns').html("<table><caption>Map CSV fields to Contacts</caption><thead><th>Column name</th><th>Map to field</th></thead><tbody><% @headers.each_with_index do |header, index| %><tr><td><%= header %></td><td><select id='<%= "config-mapping-column-#{index}" %>' ><% @contacts_columns.each do |column| %><option value='<%= column %>'><%= column %></option><% end %></select></td></tr><% end %></tbody></table>")

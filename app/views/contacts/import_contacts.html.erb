@@ -1,4 +1,8 @@
 <h1>Import Contacts</h1>
-<%= label_tag 'Upload your CSV file' %>
-<%= file_field_tag :file, accept: 'text/csv', id: 'contacts_file_field' %>
-<%= button_tag 'Import', remote: true, class: 'upload-contacts-button' %>
+<div class='container import-contacts-container'>
+  <%= label_tag 'Upload your CSV file' %>
+  <%= file_field_tag :file, accept: 'text/csv', id: 'contacts_file_field' %>
+  <%= button_tag 'Import', class: 'upload-contacts-button' %>
+</div>
+<div id='load-mapping-columns'>
+</div>

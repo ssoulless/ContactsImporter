@@ -19,7 +19,7 @@ describe 'Importing contacts' do
     select_file
     click_button 'Import'
     ['Name', 'Date of Birth', 'Phone', 'Address', 'Credit Card', 'Email'].each do |file_column|
-      expect(find(:table, 'File Columns')).to have_table_row('Column' => file_column)
+      expect(find(:table, 'Map CSV fields to Contacts')).to have_table_row('Column' => file_column)
     end
     # within('select#detected_headers') do
     #   ['Name', 'Date of Birth', 'Phone', 'Address', 'Credit Card', 'Email'].each do |option|

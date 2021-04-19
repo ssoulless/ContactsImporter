@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import papa from "papaparse";
 global.papa = papa;
+global.$ = jQuery;
 
 require("packs/contacts");
 

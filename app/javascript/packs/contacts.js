@@ -1,5 +1,6 @@
 jQuery(() => {
   $(".upload-contacts-button").on("click", (e) => {
+    e.preventDefault();
     if (document.getElementById("contacts_file_field").files.length <= 0) {
       alert("Please select a file");
       return;
@@ -16,16 +17,14 @@ jQuery(() => {
       complete: function (results) {
         //Sanitize the headers applying trim to remove white spaces
         fileHeaders = results.meta["fields"].map((header) => header.trim());
-        console.log("Finished:", fileHeaders);
+        console.log("Finished:", fileHeaders.join());
+        $.ajax({
+          url: "/pre-parse-contacts",
+          type: "post",
+          data: { file_headers: fileHeaders.join() },
+          success() {},
+        });
       },
-    });
-
-    return $.ajax({
-      url: "/pre-parse-contacts",
-      type: "post",
-      dataType: "script",
-      data: { file_headers: fileHeaders },
-      success() {},
     });
   });
 });

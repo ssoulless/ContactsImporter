@@ -12,7 +12,16 @@ class ContactsController < ApplicationController
   def import_contacts; end
 
   def pre_parse_contacts
-    @headers = params[:file_headers]
+    puts '------- DEBUG --------'
+    puts params
+    @headers = params[:file_headers].split(',')
+    @contacts_columns = Contact.column_names
+
+    # Delete unwanted columns
+    @contacts_columns.delete('id')
+    @contacts_columns.delete('created_at')
+    @contacts_columns.delete('updated_at')
+
     respond_to do |format|
       format.js
     end
