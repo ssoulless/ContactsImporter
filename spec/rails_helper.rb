@@ -45,7 +45,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   Capybara.default_max_wait_time = 10
-
+  Capybara.default_driver = :apparition
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
