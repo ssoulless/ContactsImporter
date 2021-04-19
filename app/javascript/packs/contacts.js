@@ -1,6 +1,9 @@
 jQuery(() => {
   $(".upload-contacts-button").on("click", (e) => {
     e.preventDefault();
+
+    $(".submit-contacts").show();
+
     if (document.getElementById("contacts_file_field").files.length <= 0) {
       alert("Please select a file");
       return;

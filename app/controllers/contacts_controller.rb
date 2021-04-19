@@ -12,8 +12,6 @@ class ContactsController < ApplicationController
   def import_contacts; end
 
   def pre_parse_contacts
-    gputs '------- DEBUG --------'
-    puts params
     @headers = params[:file_headers].split(',')
     @contacts_columns = Contact.column_names.dup # We need to duplicate to avoid frozen array error
 
@@ -25,6 +23,11 @@ class ContactsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def import_contacts_submit
+    puts '------- DEBUG --------'
+    puts params
   end
 
   # GET /contacts/1 or /contacts/1.json

@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   post 'pre-parse-contacts', to: 'contacts#pre_parse_contacts', constraint: is_ajax_request,
                              as: 'pre_parse_contacts'
 
+  post 'import-contacts-submit', to: 'contacts#import_contacts_submit', as: 'import_contacts_submit'
+
   root 'contacts#import_contacts'
 end
