@@ -12,10 +12,10 @@ class ContactsController < ApplicationController
   def import_contacts; end
 
   def pre_parse_contacts
-    puts '------- DEBUG --------'
+    gputs '------- DEBUG --------'
     puts params
     @headers = params[:file_headers].split(',')
-    @contacts_columns = Contact.column_names
+    @contacts_columns = Contact.column_names.dup # We need to duplicate to avoid frozen array error
 
     # Delete unwanted columns
     @contacts_columns.delete('id')

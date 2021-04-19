@@ -1,6 +1,6 @@
 <h1>Import Contacts</h1>
 <div class='container import-contacts-container'>
-  <%= label_tag 'Upload your CSV file' %>
+  <%= label_tag 'file', 'Upload your CSV file' %>
   <%= file_field_tag :file, accept: 'text/csv', id: 'contacts_file_field' %>
   <%= button_tag 'Import', class: 'upload-contacts-button' %>
 </div>
