@@ -5,9 +5,10 @@
   <%= button_tag 'Import', class: 'upload-contacts-button' %>
 </div>
 <div id='load-mapping-columns'>
-  <%= form_tag import_contacts_submit_path do %>
+  <%= form_tag import_contacts_submit_path, id: 'fields-map-form' do %>
   <div class="form-table">
   </div>
   <%= submit_tag 'Finish Import', class: 'hidden submit-contacts' %>
   <% end %>
 </div>
+<div class="import-result"></div>

@@ -30,4 +30,23 @@ jQuery(() => {
       },
     });
   });
+
+  $("#fields-map-form").on("submit", (e) => {
+    e.preventDefault();
+    let mappingConfig = {};
+    for (let i = 0; i < $("#fields-map-form select").length; i++) {
+      const columnName = $(`#config-mapping-header-${i}`).text();
+      const mapValue = $(`#config-mapping-column-${i}`).val();
+      mappingConfig[`${columnName}`] = mapValue;
+    }
+    $.ajax({
+      url: "/import-contacts-submit",
+      type: "post",
+      data: mappingConfig,
+      success() {},
+      error: (result) => {
+        console.log(result);
+      },
+    });
+  });
 });
