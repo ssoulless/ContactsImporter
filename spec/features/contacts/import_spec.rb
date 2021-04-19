@@ -11,7 +11,7 @@ describe 'Importing contacts' do
 
   def select_file(fixture = 'basic.csv')
     visit '/import-contacts'
-    fixture_path = "#{Rails.root}spec/fixtures"
+    fixture_path = "#{Rails.root}/spec/fixtures"
     attach_file('Upload your CSV file', "#{fixture_path}/#{fixture}")
   end
 
