@@ -18,6 +18,7 @@ describe 'Importing contacts' do
   it 'detects File headers and shows the user the options' do
     select_file
     click_button 'Import'
+    wait_for_ajax
     ['Name', 'Date of Birth', 'Phone', 'Address', 'Credit Card', 'Email'].each do |file_column|
       expect(find(:table, 'Map CSV fields to Contacts')).to have_table_row('Column' => file_column)
     end
@@ -31,7 +32,7 @@ describe 'Importing contacts' do
   it 'maps file headers correctly with the selections of the user after import' do
     select_file
     click_button 'Import'
-
+    wait_for_ajax
     %w[name date-of-birth phone address credit-card email].each_with_index do |option, index|
       select option, from: "config-mapping-column-#{index}"
     end
