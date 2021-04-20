@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_204800) do
+ActiveRecord::Schema.define(version: 2021_04_20_071556) do
+
+  create_table "batch_rows", force: :cascade do |t|
+    t.integer "row"
+    t.string "status"
+    t.integer "contacts_file_id"
+    t.string "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "name"
@@ -28,6 +37,8 @@ ActiveRecord::Schema.define(version: 2021_04_19_204800) do
     t.string "file"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
+    t.integer "row_size"
   end
 
 end
