@@ -12,8 +12,6 @@ class ContactsController < ApplicationController
   def import_contacts; end
 
   def pre_parse_contacts
-    puts '------- DEBUG --------'
-    puts params
     @headers = params[:file_headers].split(',')
     @contacts_columns = Contact.column_names.dup # We need to duplicate to avoid frozen array error
 
@@ -28,10 +26,17 @@ class ContactsController < ApplicationController
   end
 
   def import_contacts_submit
-    puts '------- DEBUG --------'
-    puts params[:mapping_config]
-    respond_to do |format|
-      format.js
+    # puts params[:mapping_config]
+    @new_file = ContactsFile.new
+    @new_file.file = params[:file]
+    if @new_file.save
+      puts '------- DEBUG -------'
+      puts @new_file.file.url
+      respond_to do |format|
+        format.js
+      end
+    else
+      format.json { render json: @new_file.errors, status: :unprocessable_entity }
     end
   end
 

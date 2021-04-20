@@ -2,6 +2,8 @@ AllCops:
   NewCops: enable
 Style/SymbolArray:
   Enabled: false
+Metrics/MethodLength:
+  Enabled: false
 Metrics/BlockLength:
   Max: 30
   IgnoredMethods: ["describe", "context"]

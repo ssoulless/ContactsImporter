@@ -53,6 +53,7 @@ jQuery(() => {
       contentType: false,
       success() {},
       error: (result) => {
+        alert("Error:" + result);
         console.log(result);
       },
     });
