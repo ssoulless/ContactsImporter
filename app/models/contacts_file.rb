@@ -8,7 +8,7 @@ class ContactsFile < ApplicationRecord
 
   mount_uploader :file, FileUploader
 
-  after_save :enqueue_parsing
+  after_create :enqueue_parsing
 
   def enqueue_parsing
     BatchWorker.perform_async(id)

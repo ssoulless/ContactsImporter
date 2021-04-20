@@ -11,7 +11,7 @@ class BatchWorker
 
     return unless batch
 
-    batch.update_attribute(:status, 'Processing')
+    batch.update_column(:status, 'Processing')
     BatchProcessor.call(batch)
   end
 end
