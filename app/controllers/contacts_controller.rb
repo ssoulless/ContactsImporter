@@ -19,6 +19,7 @@ class ContactsController < ApplicationController
     @contacts_columns.delete('id')
     @contacts_columns.delete('created_at')
     @contacts_columns.delete('updated_at')
+    @contacts_columns.delete('franchise')
 
     respond_to do |format|
       format.js
@@ -26,9 +27,7 @@ class ContactsController < ApplicationController
   end
 
   def import_contacts_submit
-    # puts params[:mapping_config]
-    @new_file = ContactsFile.new
-    @new_file.file = params[:file]
+    @new_file = ContactsFile.new(contacts_file_params)
     if @new_file.save
       puts @new_file.file.url
       respond_to do |format|
@@ -97,5 +96,9 @@ class ContactsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def contact_params
     params.require(:contact).permit(:name, :date_of_birth, :phone, :address, :creditcard, :franchise, :email)
+  end
+
+  def contacts_file_params
+    params.permit(:file, :mapping_config)
   end
 end

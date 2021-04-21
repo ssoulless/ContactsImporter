@@ -2,10 +2,10 @@
 
 # This service allows us to process the batch row by row
 class BatchProcessor
-  def self.call(batch)
-    batch_rows = SmarterCSV.process(fetch_file(batch.file.url))
+  def self.call(batch, csv_options)
+    # TODO: use :chunk_size option to improve performance
+    batch_rows = SmarterCSV.process(fetch_file(batch.file.url), csv_options)
     batch.update_column(:row_size, batch_rows.size)
-
     batch_rows.each_with_index do |row, index|
       batch_row = BatchRow.new(row: index, status: 'Queued', contacts_file_id: batch.id, data: row)
 

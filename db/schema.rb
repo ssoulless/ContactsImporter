@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_153818) do
+ActiveRecord::Schema.define(version: 2021_04_21_153412) do
 
   create_table "batch_rows", force: :cascade do |t|
     t.integer "row"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_04_20_153818) do
     t.string "status"
     t.integer "row_size"
     t.boolean "has_errors"
+    t.string "mapping_config"
   end
 
 end

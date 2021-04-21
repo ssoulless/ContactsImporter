@@ -13,6 +13,7 @@ class BatchWorker
     return unless batch
 
     batch.update_column(:status, 'Processing')
-    BatchProcessor.call(batch)
+    csv_options = CsvHeaderTransformator.call(JSON.parse(batch.mapping_config))
+    BatchProcessor.call(batch, csv_options)
   end
 end
