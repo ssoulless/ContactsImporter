@@ -30,7 +30,6 @@ class ContactsController < ApplicationController
     @new_file = ContactsFile.new
     @new_file.file = params[:file]
     if @new_file.save
-      puts '------- DEBUG -------'
       puts @new_file.file.url
       respond_to do |format|
         format.js

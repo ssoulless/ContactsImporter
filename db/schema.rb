@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_154154) do
+ActiveRecord::Schema.define(version: 2021_04_20_153818) do
 
   create_table "batch_rows", force: :cascade do |t|
     t.integer "row"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_04_20_154154) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "error_messages"
-    t.boolean "has_errors", null: false
+    t.boolean "has_errors"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_04_20_154154) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
     t.integer "row_size"
-    t.boolean "has_errors", null: false
+    t.boolean "has_errors"
   end
 
 end

@@ -13,6 +13,8 @@ class BatchProcessor
       next unless batch_row.save
 
       CreateContactsWorker.perform_async(batch.id, batch_row.id)
+
+      batch.update_column(:status, 'Processed') if index + 1 == batch.rows_size
     end
   end
 end

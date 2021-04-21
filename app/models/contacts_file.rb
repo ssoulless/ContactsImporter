@@ -8,9 +8,12 @@ class ContactsFile < ApplicationRecord
 
   mount_uploader :file, FileUploader
 
-  after_create :enqueue_parsing
-
   def enqueue_parsing
+    puts '------- Callback Start -------'
+    return if status == 'Processed'
+
+    puts '------- Worker exec -------'
     BatchWorker.perform_async(id)
+    # TODO: Track worker to know when it has finished.
   end
 end
