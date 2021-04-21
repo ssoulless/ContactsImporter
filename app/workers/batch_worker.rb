@@ -9,7 +9,7 @@ class BatchWorker
   def perform(batch_id)
     puts '------ BatchWorker Running ------'
     batch = ContactsFile.find_by(id: batch_id)
-    binding.pry
+
     return unless batch
 
     batch.update_column(:status, 'Processing')

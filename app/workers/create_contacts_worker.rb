@@ -11,9 +11,9 @@ class CreateContactsWorker
 
     batch_row.update_column(:status, 'Processing')
 
-    contact_attributes = JSON.parse(batch_row.data)
+    # contact_attributes = JSON.parse(batch_row.data)
 
-    ContactCreator.create_contact(batch_id, batch_row, contact_attributes)
+    ContactCreator.create_contact(batch_id, batch_row, batch_row.data)
 
     batch_row.update_column(:status, 'Processed')
   end
