@@ -1,1 +1,7 @@
-$(".import-result").text("Your import is in queue!")
+<% if @new_file.errors.any? %>
+  <% @new_file.errors.each do |error| %>
+    $(".import-result").text("<%= error.full_message %>")
+  <% end %>
+<% else %>
+  $(".import-result").text("Your import is in queue!")
+<% end %>

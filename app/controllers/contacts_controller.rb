@@ -28,13 +28,10 @@ class ContactsController < ApplicationController
 
   def import_contacts_submit
     @new_file = ContactsFile.new(contacts_file_params)
-    if @new_file.save
-      puts @new_file.file.url
-      respond_to do |format|
-        format.js
-      end
-    else
-      format.json { render json: @new_file.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      @new_file.save
+      format.js
+      format.json { render json: @new_file.errors, status: :unprocessable_entity } if @new_file.has_errors?
     end
   end
 

@@ -21,14 +21,6 @@ describe 'Importing contacts' do
     ['Name', 'Date of Birth', 'Phone', 'Address', 'Credit Card', 'Email'].each do |file_column|
       expect(page).to have_content(file_column)
     end
-    # ['Name', 'Date of Birth', 'Phone', 'Address', 'Credit Card', 'Email'].each do |file_column|
-    #   expect(find(:table, 'Map CSV fields to Contacts')).to have_table_row('Column' => file_column)
-    # end
-    # within('select#detected_headers') do
-    #   ['Name', 'Date of Birth', 'Phone', 'Address', 'Credit Card', 'Email'].each do |option|
-    #     expect(find("option[value=#{option}]").text).to eq(option)
-    #   end
-    # end
   end
 
   it 'maps file headers correctly with the selections of the user after import' do
@@ -41,7 +33,15 @@ describe 'Importing contacts' do
     click_button 'Finish Import'
     expect(page).to have_content('Your import is in queue!')
 
-    # visit '/contacts'
-    # expect(page).to have_content('Carlos Andres')
+    visit '/contacts'
+    expect(page).to have_content('Carlos Andres')
+  end
+
+  it 'does not allow dupplicated column mapping' do
+    select_file
+    click_button 'Import'
+    # Skip the selection step since all options have the same default
+    click_button 'Finish Import'
+    expect(page).to have_content('duplicated mapping')
   end
 end

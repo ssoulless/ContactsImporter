@@ -8,6 +8,8 @@ class ContactsFile < ApplicationRecord
 
   mount_uploader :file, FileUploader
 
+  validates_with MappingValidator
+
   def enqueue_parsing
     puts '------- Callback Start -------'
     return if status == 'Processed'
