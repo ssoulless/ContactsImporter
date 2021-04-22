@@ -8,7 +8,7 @@
   <%= form_tag import_contacts_submit_path, id: 'fields-map-form' do %>
   <div class="form-table">
   </div>
-  <%= submit_tag 'Finish Import', class: 'hidden submit-contacts' %>
+  <%= submit_tag 'Finish Import', class: 'hidden submit-contacts', data: { disable_with: false } %>
   <% end %>
 </div>
 <div class="import-result"></div>
