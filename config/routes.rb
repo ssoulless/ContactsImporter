@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :contacts_files, only: [:index, :show]
   resources :contacts
   get 'import-contacts', to: 'contacts#import_contacts', as: 'import_contacts'
 

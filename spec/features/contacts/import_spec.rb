@@ -44,4 +44,45 @@ describe 'Importing contacts' do
     click_button 'Finish Import'
     expect(page).to have_content('duplicated mapping')
   end
+
+  it 'shows failed row when name column is missing' do
+    select_file('name_required.csv')
+    click_button 'Import'
+
+    %w[name date_of_birth phone address creditcard email].each_with_index do |option, index|
+      select option, from: "config-mapping-column-#{index}"
+    end
+
+    click_button 'Finish Import'
+    expect(page).to have_content('Your import is in queue!')
+
+    visit_contacts_file ContactsFile.last
+    expect(page).to have_content('Some rows have errors')
+    within('.error-rows') do
+      expect(page).to have_content('Name is required')
+    end
+  end
+
+  it 'shows failed row for name with special characters and ensures the contact is not saved' do
+    select_file('name_validation.csv')
+    click_button 'Import'
+
+    %w[name date_of_birth phone address creditcard email].each_with_index do |option, index|
+      select option, from: "config-mapping-column-#{index}"
+    end
+
+    click_button 'Finish Import'
+    expect(page).to have_content('Your import is in queue!')
+
+    visit '/contacts'
+    expect(page).not_to have_content('Sebas Gir@ldo')
+    expect(Contact.count).to eq(2)
+
+    visit_contacts_file ContactsFile.last
+    expect(page).to have_content('Some rows have errors')
+    within('.error-rows') do
+      expect(page).to have_content('Sebas Gir@ldo')
+      expect(page).to have_content('special characters not allowed')
+    end
+  end
 end

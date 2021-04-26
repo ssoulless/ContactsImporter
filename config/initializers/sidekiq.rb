@@ -2,6 +2,6 @@
 # so you don't have to run a separate process.
 # You'll also benefit from code reloading.
 if Rails.env.development?
-  # require 'sidekiq/testing'
-  # Sidekiq::Testing.inline!
+  require 'sidekiq/testing'
+  Sidekiq::Testing.inline!
 end

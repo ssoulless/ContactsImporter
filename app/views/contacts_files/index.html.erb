@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Uploaded Files</h1>
+<div class="container">
+  <ul>
+    <% @contacts_files.each do |contacts_file| %>
+    <li id="<%= dom_id(contacts_file) %>" class="contacts-file">
+      <%= link_to "#{contacts_file.file_identifier}", contacts_file %>
+      <small><%= contacts_file.status %> | Uploaded at: <%= contacts_file.created_at.strftime('%d %b. %Y %H:%M') %></small>
+    </li>
+    <% end %>
+  </ul>
+</div>

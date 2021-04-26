@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<h1><%= @contacts_file.file_identifier %></h1>
+<% if @contacts_file.has_errors? %>
+<p>Some rows have errors</p>
+<div class="container">
+  <table class="error-rows">
+    <thead>
+      <th>Row #</th>
+      <th>Name</th>
+      <th>Date of birth</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Credit Card</th>
+      <th>Email</th>
+      <th>Error description</th>
+    </thead>
+    <tbody>
+      <% @error_rows.each do |row| %>
+      <tr id="<%= dom_id(row) %>" class="error-row">
+        <td><%= row.row %></td>
+        <td><%= row.data[:name] %></td>
+        <td><%= row.data[:date_of_birth] %></td>
+        <td><%= row.data[:phone] %></td>
+        <td><%= row.data[:address] %></td>
+        <td><%= row.data[:creditcard] %></td>
+        <td><%= row.data[:email] %></td>
+        <td><%= row.error_messages %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
